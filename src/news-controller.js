@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })();
 
     function showNoteForCurrentPage() {
-      var url = getStoryFromUrl(window.location);
+      var url = getNewsFromUrl(window.location);
       if (window.location.hash === "") {
         showNewsList(url);
       } else {
@@ -17,17 +17,21 @@ document.addEventListener('DOMContentLoaded', function() {
       return location.hash.split('#')[1];
     }
 
-    function showSingleStory(note) {
-      var news = List.readNewsContent();
-      document
-        .getElementById('singleNote')
-        .innerHTML = news[story].content;
-      document
-        .getElementById('listSection')
-        .setAttribute('hidden', true);
-      document
-        .getElementById('enterMessage')
-        .setAttribute('hidden', true);
+    function showSingleStory(url) {
+      List.getSummary(url);
+      setTimeout(function () {
+      var news = List.readNewsSummary();
+        console.log("NEWS:" + news);
+        document
+          .getElementById('article' + url)
+          .innerHTML = news;
+        // document
+        //   .getElementById('listSection')
+        //   .setAttribute('hidden', true);
+          }, 2000);
+      // document
+      //   .getElementById('enterMessage')
+      //   .setAttribute('hidden', true);
     }
 
     function showNewsList(story) {
@@ -35,15 +39,15 @@ document.addEventListener('DOMContentLoaded', function() {
       document
         .getElementById('listSection')
         .removeAttribute('hidden');
-      document
-        .getElementById('enterMessage')
-        .removeAttribute('hidden');
+    //   document
+    //     .getElementById('enterMessage')
+    //     .removeAttribute('hidden');
       document
         .getElementById('singleNote')
         .innerHTML = "";
       }
 
-        List.getList();
+        // List.getList();
         View.newsList();
 
 });

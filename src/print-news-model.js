@@ -19,6 +19,7 @@
           var listLink = document.createElement('a');
           var listText = document.createTextNode(news[i].webTitle);
           listLink.setAttribute('href', '#' + i );
+          listDiv.setAttribute('id', 'article' + i );
           listLink.appendChild(listDiv);
           listDiv.appendChild(listText);
           document.getElementById('list').appendChild(listLink);
