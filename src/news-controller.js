@@ -1,53 +1,54 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function(){
 
-    (function makeUrlChangeShowNote() {
-      window.addEventListener("hashchange", showNoteForCurrentPage);
-    })();
+  (function makeUrlChangeShowNote(){
+    window.addEventListener("hashchange", showNoteForCurrentPage);
+  })();
 
-    function showNoteForCurrentPage() {
-      var url = getNewsFromUrl(window.location);
-      if (window.location.hash === "") {
-        showNewsList(url);
-      } else {
-        showSingleStory(url);
-      }
-   }
-
-    function getNewsFromUrl(location) {
-      return location.hash.split('#')[1];
+  function showNoteForCurrentPage(){
+    var url = getNewsFromUrl(window.location);
+    if (window.location.hash === ""){
+      showNewsList(url);
+    } else {
+      showSingleStory(url);
     }
+  }
 
-    function showSingleStory(url) {
-      List.getSummary(url);
-      setTimeout(function () {
-      var news = List.readNewsSummary();
-        console.log("NEWS:" + news);
-        document
-          .getElementById('article' + url)
-          .innerHTML = news;
-        // document
-        //   .getElementById('listSection')
-        //   .setAttribute('hidden', true);
-          }, 2000);
-      // document
-      //   .getElementById('enterMessage')
-      //   .setAttribute('hidden', true);
-    }
+  function getNewsFromUrl(location){
+    return location.hash.split('#')[1];
+  }
 
-    function showNewsList(story) {
-      View.newsList();
-      document
-        .getElementById('listSection')
-        .removeAttribute('hidden');
-    //   document
-    //     .getElementById('enterMessage')
-    //     .removeAttribute('hidden');
-      document
-        .getElementById('singleNote')
-        .innerHTML = "";
-      }
+  function singleStoryHTML(url, news){
+    document
+      .getElementById('article' + url)
+      .innerHTML = news;
+  }
 
-        // List.getList();
-        View.newsList();
+  function showSingleStory(url){
+    List.getSummary(url);
+    setTimeout(function (){
+    var news = List.readNewsSummary();
+      singleStoryHTML(url, news);
+    }, 2000);
+  }
+
+  function newListElements(){
+    document
+      .getElementById('listSection')
+      .removeAttribute('hidden');
+    singleNoteElements();
+  }
+
+  function singleNoteElements(){
+    document
+      .getElementById('singleNote')
+      .innerHTML = "";
+  }
+
+  function showNewsList(story){
+    View.newsList();
+    newListElements();
+  }
+
+  View.newsList();
 
 });
