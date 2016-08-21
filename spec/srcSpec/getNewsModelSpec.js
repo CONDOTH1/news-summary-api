@@ -1,5 +1,3 @@
-var guardian = new guardian();
-var aylien = new aylien();
 
 var List = (function () {
 

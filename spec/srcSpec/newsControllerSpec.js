@@ -1,10 +1,13 @@
 document.addEventListener('DOMContentLoaded', function(){
 
-  (function makeUrlChangeShowStory(){
-    window.addEventListener("hashchange", showStoryForCurrentPage);
+
+
+
+  (function makeUrlChangeShowNote(){
+    window.addEventListener("hashchange", showNoteForCurrentPage);
   })();
 
-  function showStoryForCurrentPage(){
+  function showNoteForCurrentPage(){
     var url = getNewsFromUrl(window.location);
     if (window.location.hash === ""){
       showNewsList(url);
@@ -19,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function singleStoryHTML(url, news){
     document
-      .getElementById('article' + url)
+      .getElementById('article' + 0)
       .innerHTML = news;
   }
 
@@ -35,12 +38,12 @@ document.addEventListener('DOMContentLoaded', function(){
     document
       .getElementById('listSection')
       .removeAttribute('hidden');
-    singleStoryElements();
+    singleNoteElements();
   }
 
-  function singleStoryElements(){
+  function singleNoteElements(){
     document
-      .getElementById('singleStory')
+      .getElementById('singleNote')
       .innerHTML = "";
   }
 
