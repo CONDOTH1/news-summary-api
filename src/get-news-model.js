@@ -19,13 +19,11 @@ var List = (function(){
   }
 
   function manageNewsData(data, callback){
-    // resetNewsArray(function(){
       data = data.response.results;
       data.forEach(function(object){
         newsContent.push(object);
         newsURL.push(object.webUrl);
         newsImg.push(object.fields.thumbnail);
-    // });
     });
     callback();
   }
@@ -77,7 +75,6 @@ return {
     };
     xhttp.open("GET", aylien.link + newsURL[a]);
     xhttp.send();
-    // console.log("summary:" + summary);
   },
 
   readNewsContent: function(){

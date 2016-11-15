@@ -1,7 +1,5 @@
 var View = (function() {
 
-  // var news = List.readNewsContent();
-  // var img = List.readNewsImg();
   var listDiv;
   var listLink;
   var listImg;

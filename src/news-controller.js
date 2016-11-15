@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function(){
     if (window.location.hash === ""){
       showNewsList(url);
     } else if (window.location.hash === "#technology"){
-      // List.getList("technology");
       showNewsList("technology");
     } else {
       showSingleStory(url);
