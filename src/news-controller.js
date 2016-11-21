@@ -1,17 +1,18 @@
 document.addEventListener('DOMContentLoaded', function(){
 
+  var hashLength = 2;
+
   (function makeUrlChangeShowStory(){
     window.addEventListener("hashchange", showStoryForCurrentPage);
   })();
 
   function showStoryForCurrentPage(){
     var url = getNewsFromUrl(window.location);
-    if (window.location.hash === ""){
-      showNewsList(url);
-    } else if (window.location.hash === "#technology"){
-      showNewsList("technology");
-    } else {
+    var locationHash = window.location.hash;
+    if (locationHash.split("").length === hashLength) {
       showSingleStory(url);
+    } else {
+      showNewsList(url);
     }
   }
 
@@ -20,10 +21,12 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function singleStoryHTML(url, summary){
-    document
-      .getElementById('article' + url)
-      .innerHTML = summary;
-  }
+    var article = document.getElementById('anchor' + url);
+    var aSum = document.createElement('a');
+    aSum.setAttribute('id', 'summary' + url);
+    aSum.setAttribute('onclick', 'View.resetSummary('+ url + ')');
+    article.appendChild(aSum).innerHTML = summary;
+    }
 
   function showSingleStory(url){
     List.getSummary(url, function(summary){

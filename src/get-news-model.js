@@ -71,7 +71,12 @@ return {
 
   getSummary: function(a, callback){
     xhttp.onreadystatechange = function(){
-      defineSummary(callback);
+      // defineSummary(callback);
+      if (readyStateTest()){
+        sum = JSON.parse(xhttp.responseText);
+        summary = sum.sentences;
+        callback(summary);
+      }
     };
     xhttp.open("GET", aylien.link + newsURL[a]);
     xhttp.send();

@@ -19,7 +19,9 @@ var View = (function() {
   }
 
   function setAttributes(i, img){
-    listLink.setAttribute('href', '#' + i );
+    listLink.setAttribute('href', '#' + i);
+    listLink.setAttribute('id', 'anchor' + i);
+    // listLink.setAttribute('onclick', 'View.showSingleStory(' + i +')');
     listDiv.setAttribute('id', 'article' + i );
     listImg.setAttribute('src', img[i]);
     appendChildren();
@@ -58,6 +60,12 @@ var View = (function() {
     newsList: function(story) {
       removeNews();
       printNewsLinks(story);
+    },
+
+    resetSummary: function(url) {
+      var summary = document.getElementById('summary' + url)
+      console.log(summary);
+      summary.parentNode.removeChild(summary);
     }
   };
 })();
